@@ -1,3 +1,16 @@
 <!-- Design specification for the single predefined certificate template.
      PDF rendering is implemented in app/services.py using this same layout. -->
-<!doctype html><html><body><h1>Certificate of Completion</h1><p>Recipient-specific certificate template.</p></body></html>
+<!doctype html>
+<html lang="en">
+  <body style="background:#fbf8f1;color:#102a43;font-family:Arial,sans-serif;text-align:center">
+    <main style="border:7px solid #102a43;margin:32px;padding:28px;border-top-color:#c99a3e">
+      <p style="color:#c99a3e;font-weight:bold;letter-spacing:2px">AEREO LEARNING</p>
+      <h1>CERTIFICATE OF COMPLETION</h1>
+      <p>This certificate is proudly presented to</p>
+      <h2>{{ recipient_name }}</h2>
+      <p>for successfully completing</p>
+      <h3>{{ course_name }}</h3>
+      <footer>Event date: {{ event_date }} | Certificate ID: {{ certificate_id }}</footer>
+    </main>
+  </body>
+</html>

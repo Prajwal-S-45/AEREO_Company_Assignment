@@ -15,6 +15,12 @@ def safe_filename(value: str) -> str:
     return cleaned[:80] or "recipient"
 
 
+def display_certificate_id(certificate_id: str) -> str:
+    """Return a compact, alphanumeric certificate code for printed certificates."""
+    compact_id = "".join(character for character in certificate_id if character.isalnum())
+    return compact_id[:6].upper()
+
+
 def _draw_centered_fitted(c: canvas.Canvas, text: str, center_x: float, y: float,
                           font_name: str, max_size: float, min_size: float,
                           max_width: float) -> None:
@@ -65,6 +71,7 @@ def generate_certificate(*, certificate_id: str, recipient_name: str, course_nam
         c.line(x, y, x, y + 30 * y_direction)
 
     center_x = page_width / 2
+    printed_certificate_id = display_certificate_id(certificate_id)
     c.setFillColor(gold)
     c.setFont("Helvetica-Bold", 11)
     c.drawCentredString(center_x, page_height - 91, "AEREO LEARNING")
@@ -107,7 +114,7 @@ def generate_certificate(*, certificate_id: str, recipient_name: str, course_nam
     c.setFillColor(slate)
     c.setFont("Helvetica", 10)
     c.drawCentredString(112, 84, f"EVENT DATE  |  {event_date}")
-    c.drawCentredString(page_width - 112, 84, f"CERTIFICATE ID  |  {certificate_id}")
+    c.drawCentredString(page_width - 112, 84, f"CERTIFICATE ID  |  {printed_certificate_id}")
     c.setStrokeColor(gold)
     c.setLineWidth(1)
     c.line(65, 72, 160, 72)
